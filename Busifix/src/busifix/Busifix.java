@@ -22,7 +22,8 @@ public class Busifix extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
-                Parent root = FXMLLoader.load(getClass().getResource("BusifixFXML.fxml"));
+        //first scene
+        Parent root = FXMLLoader.load(getClass().getResource("BusifixFXML.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("Busifix");
         stage.setScene(scene);
