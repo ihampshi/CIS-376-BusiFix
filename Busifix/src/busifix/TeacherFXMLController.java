@@ -15,7 +15,25 @@ import javafx.fxml.Initializable;
  * @author shado
  */
 public class TeacherFXMLController implements Initializable {
-
+    private SimData simData;
+    
+    
+    /*
+    
+    */
+    public void loadSim() {    
+        
+    }
+    
+    /*
+    
+    */
+    public void saveSim() {    
+        
+    }    
+    
+    
+    
     /**
      * Initializes the controller class.
      */
