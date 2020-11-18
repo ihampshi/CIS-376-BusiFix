@@ -11,8 +11,9 @@ import java.util.ArrayList;
  *
  * @author shado
  */
-class SimData {
-    public ArrayList<ProductType> products;
-    public ArrayList<Factor> factors;
-    public ArrayList<Task> tasks;
+class Factor {
+    public String name;
+    public FactorMode mode;
+    public double baseValue;
+    public ArrayList<Factor> sourceFactors; 
 }

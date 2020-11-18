@@ -5,14 +5,11 @@
  */
 package busifix;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author shado
  */
-class SimData {
-    public ArrayList<ProductType> products;
-    public ArrayList<Factor> factors;
-    public ArrayList<Task> tasks;
+class Effect {
+    public Factor target;
+    public double change;
 }

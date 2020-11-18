@@ -11,8 +11,10 @@ import java.util.ArrayList;
  *
  * @author shado
  */
-class SimData {
-    public ArrayList<ProductType> products;
-    public ArrayList<Factor> factors;
-    public ArrayList<Task> tasks;
+class ProductType {
+    public String name;
+    public double salePrice;
+    public double saleMean;
+    public double saleDeviation;
+    public ArrayList<Factor> meanShiftFactors;
 }
