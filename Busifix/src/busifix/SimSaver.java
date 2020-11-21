@@ -5,6 +5,8 @@
  */
 package busifix;
 
+import java.util.ArrayList;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -25,11 +27,34 @@ public class SimSaver {
         PrintWriter Pwriter = new PrintWriter(Fwriter);
         Pwriter.println("Begin ProductType:");
         for (int i = 0; i < simData.products.size(); i++) {
+            
+            ProductType currentProduct = simData.products.get(i);
+            
             //Stores the data for a product as one line in the simulation file into the variable "product" and is separated by "|" key 
-            String product = simData.products.get(i).name + "|" + simData.products.get(i).salePrice + "|" + 
-                    simData.products.get(i).saleMean + "|" + simData.products.get(i).saleDeviation + "|" +
-                    simData.products.get(i).meanShiftFactors.get(i).name + "|" + simData.products.get(i).meanShiftFactors.get(i).mode
-                    + "|" + simData.products.get(i).meanShiftFactors.get(i).baseValue;//FIX ME - needs the source factor data
+            String product = currentProduct.name + "|" + currentProduct.salePrice + "|" + 
+                    currentProduct.saleMean + "|" + currentProduct.saleDeviation + "|";
+            
+            //Get referenced factors
+            ArrayList<Factor> factors = currentProduct.meanShiftFactors;
+            
+            //For each factor
+            for (int pIndex = 0; pIndex < factors.size(); pIndex++) {
+                    
+                //Get the current factor
+                Factor currentFactor = factors.get(pIndex);
+                
+                //Add index of factor in primary list
+                product += simData.factors.indexOf(currentFactor);
+                
+                //If not in the last factor
+                if (pIndex < factors.size()-1) {
+                    
+                    //Add comma to split next factor
+                    product += ',';
+                }
+            }
+            
+            //Write product
             Pwriter.println(product);
         }
         
