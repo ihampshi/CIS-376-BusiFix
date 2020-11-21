@@ -23,15 +23,13 @@ public class SimSaver {
         FileWriter Fwriter = new FileWriter(simFile);
         //Creates the file printer class
         PrintWriter Pwriter = new PrintWriter(Fwriter);
-        
         Pwriter.println("Begin ProductType:");
         for (int i = 0; i < simData.products.size(); i++) {
             //Stores the data for a product as one line in the simulation file into the variable "product" and is separated by "|" key 
             String product = simData.products.get(i).name + "|" + simData.products.get(i).salePrice + "|" + 
-                    simData.products.get(i).saleMean + "|" + simData.products.get(i).saleDeviation + "|" + 
+                    simData.products.get(i).saleMean + "|" + simData.products.get(i).saleDeviation + "|" +
                     simData.products.get(i).meanShiftFactors.get(i).name + "|" + simData.products.get(i).meanShiftFactors.get(i).mode
                     + "|" + simData.products.get(i).meanShiftFactors.get(i).baseValue;//FIX ME - needs the source factor data
-            
             Pwriter.println(product);
         }
         
@@ -47,8 +45,11 @@ public class SimSaver {
         Pwriter.println("Begin Task:");
         for (int i = 0; i < simData.tasks.size(); i++) {
             //Stores the data for a task as one line in the simulation file into the variable "task" and is separated by "|" key
-            String task = simData.tasks.get(i).name + "|" + simData.tasks.get(i).completionEffect + "|" + 
-                    simData.tasks.get(i).failureEffect;
+            String task = simData.tasks.get(i).name + "|" + simData.tasks.get(i).completionEffect.change + "|" + 
+                    simData.tasks.get(i).completionEffect.target.name + "|" + simData.tasks.get(i).completionEffect.target.baseValue
+                    + "|" + simData.tasks.get(i).completionEffect.target.mode + "|" + simData.tasks.get(i).failureEffect.change + "|" + 
+                    simData.tasks.get(i).failureEffect.target.name + "|" + simData.tasks.get(i).failureEffect.target.baseValue
+                    + "|" + simData.tasks.get(i).failureEffect.target.mode;
             
             Pwriter.println(task);
         }
