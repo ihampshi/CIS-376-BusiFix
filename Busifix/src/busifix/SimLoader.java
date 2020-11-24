@@ -18,22 +18,48 @@ import java.util.Scanner;
  */
 public class SimLoader {
 
+    //The simulation data
+    SimData simData;
+    
+    //The loaded product type data
+    ArrayList<PTloadable> PTLoadArry;
+    
     public SimData load(String path) throws IOException {
-        SimData simData = new SimData();
+        
+        //Initialize simulation data
+        simData = new SimData();
         simData.products = new ArrayList();
         simData.factors = new ArrayList();
         simData.tasks = new ArrayList();
+        
         //Creates the simulation file
         File simFile = new File(path);
+        
         //Creates the file  writer class
         Scanner s = new Scanner(simFile);
-
+        
+        //Read data objects from file
+        dataInitialization(s);
+        
+        //Establish references between objects
+        dataConnection();
+        
+        return simData;
+    }
+    
+    //PHASE 1
+    //Reads the simulation data file for data objects and reference indices
+    private void dataInitialization(Scanner s) {
+        
+        //Initialize array of product loadables
+        PTLoadArry = new ArrayList<PTloadable>();
+        
         String line = s.nextLine();
         if ("Begin ProductType:".equals(line)) {
-            //creates the array for the productloadable datatypes to be stored
-            ArrayList<PTloadable> PTLoadArry = new ArrayList<PTloadable>();
+            
             int size = 0;
             line = s.nextLine();
+            
             while (!"Begin Factor:".equals(line) && s.hasNextLine()) { //loop for products
                 //First pass, load data into ProductLoadable
                 //boolean S_pass = false;
@@ -67,41 +93,14 @@ public class SimLoader {
                 product.salePrice = loadable.salePrice;
                 product.saleMean = loadable.saleMean;
                 product.saleDeviation = loadable.saleDeviation;
+                product.meanShiftFactors = new ArrayList<Factor>();
                 
                 //Add the product to the simulation data
                 simData.products.add(product);
                 
                 size++;
             }
-            
-            size = 0;
-            
-            //For each product
-            while(size < PTLoadArry.size()) {
-                
-                //Get the current loadable product
-                PTloadable loadable = PTLoadArry.get(size);
-                
-                //Get the product type
-                ProductType product = simData.products.get(size);
-                
-                //Get referenced factor indices
-                ArrayList<Integer> meanShiftFactors = loadable.meanShiftFactors;
-                
-                //For each referenced factor
-                for (int loopIndex = 0; loopIndex < meanShiftFactors.size(); loopIndex++) {
-
-                    //Get the referenced factor index
-                    int factorIndex = meanShiftFactors.get(loopIndex).intValue();
-                    
-                    //Get the corresponding factor
-                    Factor referencedFactor = simData.factors.get(factorIndex);
-                    
-                    //Add the reference to the product
-                    product.meanShiftFactors.add(referencedFactor);
-                }
-                size++;
-            }
+        
             while (!"Begin Task:".equals(line) && s.hasNextLine()) {//loop for factors
                 line = s.nextLine();
                 String[] data = line.split("\\|");
@@ -156,6 +155,39 @@ public class SimLoader {
                 line = s.nextLine();
             }
         }
-        return simData;
+    }
+    
+    //PHASE 2
+    //Establishes connections between loaded data items
+    private void dataConnection() {
+        
+        int size = 0;
+        
+        //For each product
+        while(size < PTLoadArry.size()) {
+
+            //Get the current loadable product
+            PTloadable loadable = PTLoadArry.get(size);
+
+            //Get the product type
+            ProductType product = simData.products.get(size);
+
+            //Get referenced factor indices
+            ArrayList<Integer> meanShiftFactors = loadable.meanShiftFactors;
+
+            //For each referenced factor
+            for (int loopIndex = 0; loopIndex < meanShiftFactors.size(); loopIndex++) {
+
+                //Get the referenced factor index
+                int factorIndex = meanShiftFactors.get(loopIndex).intValue();
+
+                //Get the corresponding factor
+                Factor referencedFactor = simData.factors.get(factorIndex);
+
+                //Add the reference to the product
+                product.meanShiftFactors.add(referencedFactor);
+            }
+            size++;
+        }
     }
 }
