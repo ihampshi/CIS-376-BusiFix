@@ -73,7 +73,8 @@ public class SimLoader {
             }
             
             size = 0;
-                
+            
+            //For each product
             while(size < PTLoadArry.size()) {
                 
                 //Get the current loadable product
