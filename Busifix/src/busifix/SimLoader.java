@@ -70,6 +70,8 @@ public class SimLoader {
                 
                 //Add the product to the simulation data
                 simData.products.add(product);
+                
+                size++;
             }
             
             size = 0;
