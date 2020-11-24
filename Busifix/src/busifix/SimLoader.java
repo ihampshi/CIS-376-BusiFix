@@ -30,33 +30,40 @@ public class SimLoader {
 
         String line = s.nextLine();
         if ("Begin ProductType:".equals(line)) {
+            //creates the array for the productloadable datatypes to be stored
+            ArrayList<PTloadable> PTLoadArry = new ArrayList<PTloadable>();
+            int size = 0;
             line = s.nextLine();
             while (!"Begin Factor:".equals(line) && s.hasNextLine()) { //loop for products
+                //First pass, load data into ProductLoadable
+                //boolean S_pass = false;
                 String[] data = line.split("\\|");
                 String name = data[0];
                 double salePrice = Double.parseDouble(data[1]);
                 double saleMean = Double.parseDouble(data[2]);
                 double saleDeviation = Double.parseDouble(data[3]);
-                String Mname = data[4];
-                String mode = data[5];
-                double baseValue = Double.parseDouble(data[6]);
-                // converts the string into FactorMode
-                Enum Mode = Enum.valueOf(FactorMode.class, mode);
-                Mode = FactorMode.valueOf(mode);
-
-                ProductType p = new ProductType();
-                Factor f = new Factor();
-                p.meanShiftFactors = new ArrayList();
-                p.name = name;
-                p.salePrice = salePrice;
-                p.saleMean = saleMean;
-                p.saleDeviation = saleDeviation;
-                f.name = Mname;
-                f.mode = (FactorMode) Mode;
-                f.baseValue = baseValue;
-                p.meanShiftFactors.add(f);
-                simData.products.add(p);
+                int index = Integer.parseInt(data[4]);
+                PTloadable load = new PTloadable();
+                load.name = name;
+                load.salePrice = salePrice;
+                load.saleMean = saleMean;
+                load.saleDeviation = saleDeviation;
+                load.meanShiftFactors = new ArrayList();
+                load.meanShiftFactors.add(index);
+                PTLoadArry.add(load);              
                 line = s.nextLine();
+            }
+            while(size < PTLoadArry.size()) {
+                ProductType product = new ProductType();
+                product.name = PTLoadArry.get(size).name;
+                product.salePrice = PTLoadArry.get(size).salePrice;
+                product.saleMean = PTLoadArry.get(size).saleMean;
+                product.saleDeviation = PTLoadArry.get(size).saleDeviation;
+                int index = PTLoadArry.get(size).meanShiftFactors.get(size).intValue();
+                //product.meanShiftFactors.add(e)
+                simData.products.add(product);
+                
+                size++;
             }
             while (!"Begin Task:".equals(line) && s.hasNextLine()) {//loop for factors
                 line = s.nextLine();
