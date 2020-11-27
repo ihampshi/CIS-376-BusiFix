@@ -3,17 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package busifix;
-
-import java.util.ArrayList;
+package busifix.simdatatypes;
 
 /**
  *
  * @author shado
  */
-class Factor {
-    public String name;
-    public FactorMode mode;
-    public double baseValue;
-    public ArrayList<Factor> sourceFactors; 
+public class Effect {
+    public Factor target;
+    public double change;
 }

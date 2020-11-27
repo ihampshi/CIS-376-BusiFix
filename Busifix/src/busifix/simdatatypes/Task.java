@@ -3,18 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package busifix;
-
-import java.util.ArrayList;
+package busifix.simdatatypes;
 
 /**
  *
  * @author shado
  */
-class ProductType {
+public class Task {
     public String name;
-    public double salePrice;
-    public double saleMean;
-    public double saleDeviation;
-    public ArrayList<Factor> meanShiftFactors;
+    public Effect completionEffect;
+    public Effect failureEffect;
 }

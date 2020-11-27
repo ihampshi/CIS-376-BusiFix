@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package busifix;
+package busifix.simdatatypes;
 
 /**
  *
  * @author shado
  */
-class Effect {
-    public Factor target;
-    public double change;
+public enum FactorMode {
+    //Access values by using the ".ordinal" method 
+    VALUE, SUM, PRODUCT, AVERAGE, DIFF;
 }

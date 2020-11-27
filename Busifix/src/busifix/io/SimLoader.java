@@ -3,8 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package busifix;
+package busifix.io;
 
+import busifix.simdatatypes.Effect;
+import busifix.simdatatypes.Factor;
+import busifix.simdatatypes.FactorMode;
+import busifix.simdatatypes.ProductType;
+import busifix.simdatatypes.SimData;
+import busifix.simdatatypes.Task;
+import busifix.simdataloadables.PTloadable;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package busifix;
+package busifix.simdatatypes;
 
 import java.util.ArrayList;
 
@@ -11,10 +11,9 @@ import java.util.ArrayList;
  *
  * @author shado
  */
-class PTloadable {
+public class Factor {
     public String name;
-    public double salePrice;
-    public double saleMean;
-    public double saleDeviation;
-    public ArrayList<Integer> meanShiftFactors;
+    public FactorMode mode;
+    public double baseValue;
+    public ArrayList<Factor> sourceFactors; 
 }

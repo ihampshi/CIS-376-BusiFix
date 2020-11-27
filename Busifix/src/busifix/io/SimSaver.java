@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package busifix;
+package busifix.io;
 
+import busifix.simdatatypes.Factor;
+import busifix.simdatatypes.ProductType;
+import busifix.simdatatypes.SimData;
 import java.util.ArrayList;
 
 import java.io.File;

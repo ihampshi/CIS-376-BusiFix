@@ -3,13 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package busifix;
+package busifix.simdatatypes;
+
+import java.util.ArrayList;
 
 /**
  *
  * @author shado
  */
-public enum FactorMode {
-    //Access values by using the ".ordinal" method 
-    VALUE, SUM, PRODUCT, AVERAGE, DIFF;
+public class SimData {
+    public ArrayList<ProductType> products;
+    public ArrayList<Factor> factors;
+    public ArrayList<Task> tasks;
 }
