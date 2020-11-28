@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.scene.Scene;
 import javafx.scene.Parent;
 import javafx.fxml.FXMLLoader;
@@ -58,7 +59,7 @@ public class Busifix extends Application{
         SimLoader sim = new SimLoader();
         SimData SM;
         SM = sim.load(path);
-        //launch(args);
+        launch(args);
         System.out.println(SM.products.get(0).name);
     }
 
@@ -66,10 +67,11 @@ public class Busifix extends Application{
     @Override
     public void start(Stage stage) throws Exception {
         //first scene
-        Parent root = FXMLLoader.load(getClass().getResource("BusifixFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/busifix/fxml/BusifixFXML.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("Busifix");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 }
