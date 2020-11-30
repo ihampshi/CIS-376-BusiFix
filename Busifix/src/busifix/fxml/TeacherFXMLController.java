@@ -14,8 +14,11 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 
 /**
@@ -24,6 +27,9 @@ import javafx.stage.FileChooser;
  * @author shado
  */
 public class TeacherFXMLController implements Initializable {
+    
+    @FXML
+    private AnchorPane rootPane;
     
     /*
     
@@ -73,6 +79,22 @@ public class TeacherFXMLController implements Initializable {
             //Save working simulation data
             SimSaver simSaver = new SimSaver();
             simSaver.save(BusifixAppData.GetWorkingData(), chosenFile.getAbsolutePath());
+        }
+    }
+    
+    
+    public void toStudentMode() {
+        
+        AnchorPane pane = new AnchorPane();
+        
+        try {
+            
+            //Load student mode
+            pane = FXMLLoader.load(getClass().getResource("studentFXML.fxml"));
+            rootPane.getChildren().setAll(pane);
+        } catch (Exception e) {
+            
+            e.printStackTrace();
         }
     }
     

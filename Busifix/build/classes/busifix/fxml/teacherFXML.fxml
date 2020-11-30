@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="busifix.fxml.TeacherFXMLController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="busifix.fxml.TeacherFXMLController">
    <children>
       <BorderPane prefHeight="400.0" prefWidth="600.0">
          <center>
@@ -177,7 +177,7 @@
                   <items>
                     <MenuItem mnemonicParsing="false" onAction="#loadSim" text="Open" />
                         <MenuItem mnemonicParsing="false" onAction="#saveSim" text="Save" />
-                        <MenuItem mnemonicParsing="false" text="&lt;-Student" />
+                        <MenuItem mnemonicParsing="false" onAction="#toStudentMode" text="&lt;-Student" />
                   </items>
                 </Menu>
               </menus>
