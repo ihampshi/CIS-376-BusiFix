@@ -37,13 +37,13 @@
                                              </font>
                                           </Label>
                                           <Label layoutX="14.0" layoutY="38.0" text="Name:" />
-                                          <TextField fx:id="business_name" layoutX="56.0" layoutY="34.0" prefHeight="26.0" prefWidth="121.0" promptText="Business name">
+                                          <TextField fx:id="business_name_txtfield" layoutX="56.0" layoutY="34.0" onKeyTyped="#updateBusinessName" prefHeight="26.0" prefWidth="121.0" promptText="Business name">
                                              <font>
                                                 <Font size="11.0" />
                                              </font>
                                           </TextField>
                                           <Label layoutX="14.0" layoutY="78.0" text="Description" />
-                                          <TextArea layoutX="14.0" layoutY="103.0" prefHeight="83.0" prefWidth="164.0" promptText="Business description">
+                                          <TextArea fx:id="business_description_txtarea" layoutX="14.0" layoutY="103.0" onKeyTyped="#updateBusinessDescription" prefHeight="83.0" prefWidth="164.0" promptText="Business description">
                                              <font>
                                                 <Font size="11.0" />
                                              </font>
@@ -60,10 +60,10 @@
                                           <Pane layoutX="14.0" layoutY="26.0" prefHeight="323.0" prefWidth="370.0">
                                              <children>
                                                 <Label layoutX="14.0" layoutY="14.0" text="Positions" />
-                                                <ListView layoutX="14.0" layoutY="37.0" prefHeight="112.0" prefWidth="342.0" />
+                                                <ListView fx:id="positions_listview" layoutX="14.0" layoutY="37.0" prefHeight="112.0" prefWidth="342.0" />
                                                 <Button layoutX="319.0" layoutY="10.0" mnemonicParsing="false" text="Edit" />
                                                 <Label layoutX="14.0" layoutY="164.0" text="Inventories" />
-                                                <ListView layoutX="14.0" layoutY="187.0" prefHeight="112.0" prefWidth="342.0" />
+                                                <ListView fx:id="inventories_listview" layoutX="14.0" layoutY="187.0" prefHeight="112.0" prefWidth="342.0" />
                                                 <Button layoutX="319.0" layoutY="160.0" mnemonicParsing="false" text="Edit" />
                                              </children>
                                           </Pane>
@@ -94,22 +94,22 @@
                                                 <Font name="System Bold" size="12.0" />
                                              </font>
                                           </Label>
-                                          <ListView layoutX="18.0" layoutY="63.0" prefHeight="112.0" prefWidth="550.0" />
+                                          <ListView fx:id="product_types_listview" layoutX="18.0" layoutY="63.0" prefHeight="112.0" prefWidth="550.0" />
                                           <Button layoutX="531.0" layoutY="36.0" mnemonicParsing="false" text="Edit" />
                                           <Label layoutX="18.0" layoutY="190.0" text="Factors" />
-                                          <ListView layoutX="18.0" layoutY="213.0" prefHeight="112.0" prefWidth="550.0" />
+                                          <ListView fx:id="factors_listview" layoutX="18.0" layoutY="213.0" prefHeight="112.0" prefWidth="550.0" />
                                           <Button layoutX="531.0" layoutY="186.0" mnemonicParsing="false" text="Edit" />
                                           <Label layoutX="18.0" layoutY="340.0" text="Tasks" />
-                                          <ListView layoutX="18.0" layoutY="363.0" prefHeight="112.0" prefWidth="550.0" />
+                                          <ListView fx:id="tasks_listview" layoutX="18.0" layoutY="363.0" prefHeight="112.0" prefWidth="550.0" />
                                           <Button layoutX="531.0" layoutY="336.0" mnemonicParsing="false" text="Edit" />
                                           <Label layoutX="18.0" layoutY="519.0" text="Suppliers" />
-                                          <ListView layoutX="18.0" layoutY="543.0" prefHeight="112.0" prefWidth="550.0" />
+                                          <ListView fx:id="suppliers_listview" layoutX="18.0" layoutY="543.0" prefHeight="112.0" prefWidth="550.0" />
                                           <Button layoutX="531.0" layoutY="516.0" mnemonicParsing="false" text="Edit" />
                                           <Label layoutX="18.0" layoutY="671.0" text="Random Events" />
-                                          <ListView layoutX="18.0" layoutY="694.0" prefHeight="112.0" prefWidth="550.0" />
+                                          <ListView fx:id="events_listview" layoutX="18.0" layoutY="694.0" prefHeight="112.0" prefWidth="550.0" />
                                           <Button layoutX="531.0" layoutY="667.0" mnemonicParsing="false" text="Edit" />
                                           <Label layoutX="18.0" layoutY="823.0" text="Employee Pool" />
-                                          <ListView layoutX="18.0" layoutY="846.0" prefHeight="112.0" prefWidth="550.0" />
+                                          <ListView fx:id="employees_listview" layoutX="18.0" layoutY="846.0" prefHeight="112.0" prefWidth="550.0" />
                                           <Button layoutX="531.0" layoutY="819.0" mnemonicParsing="false" text="Edit" />
                                        </children>
                                     </AnchorPane>
@@ -154,10 +154,10 @@
                                              </font>
                                           </Label>
                                           <Label layoutX="28.0" layoutY="40.0" text="Position Assignments" />
-                                          <ListView layoutX="28.0" layoutY="63.0" prefHeight="112.0" prefWidth="342.0" />
+                                          <ListView fx:id="assigned_positions_listview" layoutX="28.0" layoutY="63.0" prefHeight="112.0" prefWidth="342.0" />
                                           <Button layoutX="333.0" layoutY="36.0" mnemonicParsing="false" text="Edit" />
                                           <Label layoutX="28.0" layoutY="190.0" text="Placed Orders" />
-                                          <ListView layoutX="28.0" layoutY="213.0" prefHeight="112.0" prefWidth="342.0" />
+                                          <ListView fx:id="placed_orders_listview" layoutX="28.0" layoutY="213.0" prefHeight="112.0" prefWidth="342.0" />
                                           <Button layoutX="333.0" layoutY="186.0" mnemonicParsing="false" text="Edit" />
                                        </children>
                                     </AnchorPane>

@@ -13,11 +13,11 @@ import busifix.simdatatypes.SimData;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 
@@ -31,9 +31,35 @@ public class TeacherFXMLController implements Initializable {
     @FXML
     private AnchorPane rootPane;
     
-    /*
+    @FXML
+    private TextField business_name_txtfield;
     
-    */
+    @FXML
+    private TextArea business_description_txtarea;
+    
+    //Lists
+    @FXML
+    private ListView positions_listview;
+    @FXML
+    private ListView inventories_listview;
+    @FXML
+    private ListView product_types_listview;
+    @FXML
+    private ListView factors_listview;
+    @FXML
+    private ListView tasks_listview;
+    @FXML
+    private ListView suppliers_listview;
+    @FXML
+    private ListView events_listview;
+    @FXML
+    private ListView employees_listview;
+    @FXML
+    private ListView assigned_positions_listview;
+    @FXML
+    private ListView placed_orders_listview;
+    
+    //Loads the chosen data file into the working simulation data
     public void loadSim() {    
         
         //Get load location
@@ -64,9 +90,7 @@ public class TeacherFXMLController implements Initializable {
         }
     }
     
-    /*
-    
-    */
+    //Saves the current working simulation data to the chosen file
     public void saveSim() throws IOException{
         
         //Get save location
@@ -82,7 +106,7 @@ public class TeacherFXMLController implements Initializable {
         }
     }
     
-    
+    //Transitions to the student interface
     public void toStudentMode() {
         
         AnchorPane pane = new AnchorPane();
@@ -98,12 +122,71 @@ public class TeacherFXMLController implements Initializable {
         }
     }
     
+    //When the user types in the business name text field
+    public void updateBusinessName() {
+        
+        //Read the updated name from the text box
+        String updatedName = business_name_txtfield.getText();
+        
+        //Update the working simulation data
+        BusifixAppData.GetWorkingData().businessName = updatedName;
+    }
+    
+    //When the user types in the business description text field
+    public void updateBusinessDescription() {
+        
+        //Read the updated description from the text area
+        String updatedDescription = business_description_txtarea.getText();
+        
+        //Update the working simulation data
+        BusifixAppData.GetWorkingData().businessDescription = updatedDescription;
+    }
+    
+    //Displays the contents of the simulation data within the available list views
+    private void displayListContents() {
+        
+        displayInListView(positions_listview, null, "<No positions>");
+        displayInListView(inventories_listview, null, "<No inventories>");
+        displayInListView(product_types_listview, null, "<No inventories>");
+        displayInListView(factors_listview, null, "<No factors>");
+        displayInListView(tasks_listview, null, "<No tasks>");
+        displayInListView(suppliers_listview, null, "<No suppliers>");
+        displayInListView(events_listview, null, "<No events>");
+        displayInListView(employees_listview, null, "<No employees>");
+        displayInListView(assigned_positions_listview, null, "<No assigned positions>");
+        displayInListView(placed_orders_listview, null, "<No placed orders>");
+    }
+    
+    //Displays the contents of the given list in the given list view
+    //Displays empty message if the givne list is empty
+    private void displayInListView(ListView listView, ArrayList<String> items, String emptyMessage) {
+        
+        //Clear existing items
+        listView.getItems().clear();
+        
+        //If the given list is invalid or empty
+        if (items == null || items.size() == 0) {
+            
+            //Display empty message
+            listView.getItems().add(emptyMessage);
+        } else {
+            
+            //Display the given items
+            for (int index = 0; index < items.size(); index++) {
+                
+                listView.getItems().add(items.get(index));
+            }
+        }
+    }
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        //Populate list view contents
+        displayListContents();
     }    
     
 }

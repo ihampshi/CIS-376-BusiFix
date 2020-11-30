@@ -12,12 +12,22 @@ import java.util.ArrayList;
  * @author shado
  */
 public class SimData {
+    
+    //Metadata
+    public String businessName;
+    public String businessDescription;
+    
+    //Resource lists
     public ArrayList<ProductType> products;
     public ArrayList<Factor> factors;
     public ArrayList<Task> tasks;
     
     //Constructor
     public SimData() {
+        
+        //Initialize metadata
+        businessName = "";
+        businessDescription = "";
         
         //Initialize data lists
         products = new ArrayList();
