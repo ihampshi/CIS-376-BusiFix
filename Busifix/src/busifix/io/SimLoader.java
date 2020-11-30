@@ -106,7 +106,7 @@ public class SimLoader {
             }
         
             while (!"Begin Task:".equals(line) && s.hasNextLine()) {//loop for factors
-                line = s.nextLine();
+                                
                 String[] data = line.split("\\|");
                 String name = data[0];
                 String mode = data[1];

@@ -46,7 +46,7 @@ public class TeacherFXMLController implements Initializable {
                 loadedData = simLoader.load(chosenFile.getAbsolutePath());
             } catch (Exception e) {
                 
-                System.out.println(e);
+                e.printStackTrace();
             }
             
             //If load was successful
