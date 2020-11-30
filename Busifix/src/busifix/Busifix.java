@@ -24,8 +24,16 @@ import javafx.fxml.FXMLLoader;
 
 public class Busifix extends Application{
 
-
     public static void main(String[] args) throws IOException{
+        
+        //Initialize working simulation data
+        BusifixAppData.InitializeData();
+        
+        launch(args);
+    }
+
+    private void testSimData() {
+        
         ProductType p = new ProductType();
         Factor f = new Factor();
         Task t = new Task();
@@ -39,8 +47,8 @@ public class Busifix extends Application{
         f.baseValue = 8;        
         
         //t.completionEffect = null;
-       // t.failureEffect = null;
-       //t.completionEffect.target = null;
+        // t.failureEffect = null;
+        //t.completionEffect.target = null;
         //t.failureEffect.target = null;
         
         //t.name = "joe";
@@ -54,16 +62,21 @@ public class Busifix extends Application{
         simData.factors.add(f);
         //simData.tasks.add(t);
         String path = "SimulationFile.txt";
-        SimSaver simSaver = new SimSaver();
-        simSaver.save(simData, path);
-        SimLoader sim = new SimLoader();
-        SimData SM;
-        SM = sim.load(path);
-        launch(args);
-        System.out.println(SM.products.get(0).name);
+        
+        try {
+            SimSaver simSaver = new SimSaver();
+            simSaver.save(simData, path);
+            SimLoader sim = new SimLoader();
+            SimData SM;
+            SM = sim.load(path);
+            
+            System.out.println(SM.products.get(0).name);
+        } catch (Exception e) {
+            
+            System.out.println(e);
+        }
     }
-
-
+    
     @Override
     public void start(Stage stage) throws Exception {
         //first scene

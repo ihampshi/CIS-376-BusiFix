@@ -175,8 +175,8 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Open" />
-                        <MenuItem mnemonicParsing="false" text="Save" />
+                    <MenuItem mnemonicParsing="false" onAction="#loadSim" text="Open" />
+                        <MenuItem mnemonicParsing="false" onAction="#saveSim" text="Save" />
                         <MenuItem mnemonicParsing="false" text="&lt;-Student" />
                   </items>
                 </Menu>

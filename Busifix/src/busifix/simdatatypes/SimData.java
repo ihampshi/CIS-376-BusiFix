@@ -15,4 +15,13 @@ public class SimData {
     public ArrayList<ProductType> products;
     public ArrayList<Factor> factors;
     public ArrayList<Task> tasks;
+    
+    //Constructor
+    public SimData() {
+        
+        //Initialize data lists
+        products = new ArrayList();
+        factors = new ArrayList();
+        tasks = new ArrayList();
+    }
 }

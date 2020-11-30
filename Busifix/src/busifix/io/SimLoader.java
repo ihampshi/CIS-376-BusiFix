@@ -35,9 +35,6 @@ public class SimLoader {
         
         //Initialize simulation data
         simData = new SimData();
-        simData.products = new ArrayList();
-        simData.factors = new ArrayList();
-        simData.tasks = new ArrayList();
         
         //Creates the simulation file
         File simFile = new File(path);
