@@ -13,4 +13,11 @@ public class SimProgress {
     
     //The current day of the simulation
     public int day;
+    
+    //Initialize the simulation progress
+    public SimProgress() {
+        
+        //Initialize on the first day
+        day = 1;
+    }
 }
