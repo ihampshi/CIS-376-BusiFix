@@ -11,6 +11,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -34,6 +36,14 @@ public class StudentFXMLController implements Initializable {
     private Label net_lbl;
     @FXML
     private Label expected_balance_lbl;
+    
+    //Inventory status listview
+    @FXML
+    private ListView inventory_listview;
+    
+    //Event log text area
+    @FXML
+    private TextArea log_txtarea;
     
     //Transitions to the teacher interface
     public void toTeacherMode() {
