@@ -56,6 +56,10 @@ public class StudentFXMLController implements Initializable {
     @FXML
     private Button advance_btn;
     
+    //Day counter label
+    @FXML
+    private Label day_lbl;
+    
     //Loads the chosen data file into the working simulation data
     public void loadSim() {    
         
@@ -72,12 +76,13 @@ public class StudentFXMLController implements Initializable {
             
             try {
                 
+                //Load and retrieve data
                 loadedData = simLoader.load(chosenFile.getAbsolutePath());
             } catch (Exception e) {
                 
                 e.printStackTrace();
                 
-                //Log successful load
+                //Log error
                 logEvent("Simulation file: '" + chosenFile.getAbsolutePath() + "' could not be successfully loaded");
             }
             
@@ -86,6 +91,9 @@ public class StudentFXMLController implements Initializable {
                 
                 //Setup data
                 BusifixAppData.SetWorkingData(loadedData);
+                
+                //Update displays
+                displayProgress();
                 
                 //Log successful load
                 logEvent("Simulation file: '" + chosenFile.getAbsolutePath() + "' successfully loaded");
@@ -96,8 +104,25 @@ public class StudentFXMLController implements Initializable {
     //Advances the simulation to the next day
     public void advanceDay() {
         
+        //Log end of day
+        logEvent("Finishing day: " + BusifixAppProgress.GetSimProgress().day);
+        
         //Perform updates for the next day
         BusifixAppProgress.NextDay();
+        
+        //Update displays
+        displayProgress();
+        
+        //Log beginning of day
+        logEvent("Starting day: " + BusifixAppProgress.GetSimProgress().day);
+    }
+    
+    //Update the student interface
+    private void displayProgress() {
+        
+        //Update day counter
+        int dayCounter = BusifixAppProgress.GetSimProgress().day;
+        day_lbl.setText(String.valueOf(dayCounter));
     }
     
     //Transitions to the teacher interface

@@ -69,7 +69,7 @@
                                           <Label layoutX="19.0" layoutY="2.0" prefHeight="24.0" prefWidth="108.0" text="Event Log" />
                                           <Button fx:id="advance_btn" layoutX="498.0" layoutY="110.0" mnemonicParsing="false" onAction="#advanceDay" text="Advance Day" />
                                           <Label layoutX="498.0" layoutY="83.0" text="Day:" />
-                                          <Label layoutX="529.0" layoutY="82.0" prefHeight="18.0" prefWidth="54.0" text="1" />
+                                          <Label fx:id="day_lbl" layoutX="529.0" layoutY="82.0" prefHeight="18.0" prefWidth="54.0" text="1" />
                                        </children>
                                     </AnchorPane>
                                 </items>
