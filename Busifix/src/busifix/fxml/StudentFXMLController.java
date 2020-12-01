@@ -69,6 +69,14 @@ public class StudentFXMLController implements Initializable {
     @FXML
     private ListView employee_pool_listview;
     
+    //Placed orders listview
+    @FXML
+    private ListView placed_orders_listview;
+    
+    //Available orders listview
+    @FXML
+    private ListView available_orders_listview;
+    
     //Loads the chosen data file into the working simulation data
     public void loadSim() {    
         
@@ -150,6 +158,10 @@ public class StudentFXMLController implements Initializable {
         //Update employee listviews
         displayInListView(employees_listview, null, "<No employees>");
         displayInListView(employee_pool_listview, null, "<No candidates>");
+        
+        //Update order listviews
+        displayInListView(placed_orders_listview, null, "<No orders placed>");
+        displayInListView(available_orders_listview, null, "<No orders available>");
     }
     
     //Displays the contents of the given list in the given list view
