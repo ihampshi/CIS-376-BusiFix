@@ -18,7 +18,7 @@ public class BusifixAppData {
     static SimData workingSimData;
     
     //Returns whether the working simulation data has been initialized
-    public static boolean WorkingDataInitialized() {
+    public static boolean IsWorkingDataInitialized() {
         
         return workingSimData != null;
     }  
