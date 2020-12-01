@@ -82,7 +82,7 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <ListView layoutX="14.0" layoutY="151.0" prefHeight="158.0" prefWidth="279.0" />
+                              <ListView fx:id="employees_listview" layoutX="14.0" layoutY="151.0" prefHeight="158.0" prefWidth="279.0" />
                               <Label layoutX="19.0" layoutY="6.0" prefHeight="24.0" prefWidth="139.0" text="Employee Management">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
@@ -91,7 +91,7 @@
                               <Label layoutX="14.0" layoutY="128.0" text="Employees" />
                               <Label layoutX="19.0" layoutY="36.0" text="Wages:" />
                               <Label layoutX="104.0" layoutY="35.0" prefHeight="18.0" prefWidth="61.0" text="\$0.00" />
-                              <ListView layoutX="306.0" layoutY="57.0" prefHeight="252.0" prefWidth="279.0" />
+                              <ListView fx:id="employee_pool_listview" layoutX="306.0" layoutY="57.0" prefHeight="252.0" prefWidth="279.0" />
                               <Label layoutX="306.0" layoutY="36.0" text="Candidates" />
                               <Label layoutX="145.0" layoutY="110.0" text="Hiring Cost:" />
                               <Label layoutX="231.0" layoutY="109.0" prefHeight="18.0" prefWidth="61.0" text="\$0.00" />

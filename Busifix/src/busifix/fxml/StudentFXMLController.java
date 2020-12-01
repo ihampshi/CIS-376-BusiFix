@@ -11,6 +11,7 @@ import busifix.io.SimLoader;
 import busifix.simdatatypes.SimData;
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -60,6 +61,14 @@ public class StudentFXMLController implements Initializable {
     @FXML
     private Label day_lbl;
     
+    //Employees listview
+    @FXML
+    private ListView employees_listview;
+    
+    //Employees listview
+    @FXML
+    private ListView employee_pool_listview;
+    
     //Loads the chosen data file into the working simulation data
     public void loadSim() {    
         
@@ -104,17 +113,24 @@ public class StudentFXMLController implements Initializable {
     //Advances the simulation to the next day
     public void advanceDay() {
         
-        //Log end of day
-        logEvent("Finishing day: " + BusifixAppProgress.GetSimProgress().day);
+        //If the simulation data is initialized
+        if (BusifixAppData.IsWorkingDataInitialized()) {
         
-        //Perform updates for the next day
-        BusifixAppProgress.NextDay();
-        
-        //Update displays
-        displayProgress();
-        
-        //Log beginning of day
-        logEvent("Starting day: " + BusifixAppProgress.GetSimProgress().day);
+            //Log end of day
+            logEvent("Finishing day: " + BusifixAppProgress.GetSimProgress().day);
+
+            //Perform updates for the next day
+            BusifixAppProgress.NextDay();
+
+            //Update displays
+            displayProgress();
+
+            //Log beginning of day
+            logEvent("Starting day: " + BusifixAppProgress.GetSimProgress().day);
+        } else {
+            
+            System.out.println("Unable to advance day: simulation not initialized");
+        }
     }
     
     //Update the student interface
@@ -127,6 +143,35 @@ public class StudentFXMLController implements Initializable {
         //Update financial labels
         double balance = BusifixAppData.GetWorkingData().balance;
         balance_lbl.setText("$" + String.valueOf(balance));
+        
+        //Update inventories listview
+        displayInListView(inventory_listview, null, "<No inventories>");
+        
+        //Update employee listviews
+        displayInListView(employees_listview, null, "<No employees>");
+        displayInListView(employee_pool_listview, null, "<No candidates>");
+    }
+    
+    //Displays the contents of the given list in the given list view
+    //Displays empty message if the givne list is empty
+    private void displayInListView(ListView listView, ArrayList<String> items, String emptyMessage) {
+        
+        //Clear existing items
+        listView.getItems().clear();
+        
+        //If the given list is invalid or empty
+        if (items == null || items.size() == 0) {
+            
+            //Display empty message
+            listView.getItems().add(emptyMessage);
+        } else {
+            
+            //Display the given items
+            for (int index = 0; index < items.size(); index++) {
+                
+                listView.getItems().add(items.get(index));
+            }
+        }
     }
     
     //Transitions to the teacher interface
