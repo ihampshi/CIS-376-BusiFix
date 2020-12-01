@@ -41,4 +41,22 @@ public class BusifixAppData {
         
         return workingSimData;
     }
+    
+    //Retrieves the names of the product types
+    public static ArrayList<String> GetProductTypeNames() {
+        
+        ArrayList<String> productNames = new ArrayList<String>();
+        
+        if (workingSimData != null) {
+            
+            ArrayList<ProductType> products = workingSimData.products;
+            
+            for (int index = 0; index < products.size(); index++) {
+                
+                productNames.add(products.get(index).name);
+            }
+        }
+        
+        return productNames;
+    }
 }

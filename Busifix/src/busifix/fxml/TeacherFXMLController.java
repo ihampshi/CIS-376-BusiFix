@@ -145,9 +145,13 @@ public class TeacherFXMLController implements Initializable {
     //Displays the contents of the simulation data within the available list views
     private void displayListContents() {
         
+        //Retrieve working data as displayable arrays
+        ArrayList<String> productNames = BusifixAppData.GetProductTypeNames();
+        
+        //Display working data
         displayInListView(positions_listview, null, "<No positions>");
         displayInListView(inventories_listview, null, "<No inventories>");
-        displayInListView(product_types_listview, null, "<No inventories>");
+        displayInListView(product_types_listview, productNames, "<No product types>");
         displayInListView(factors_listview, null, "<No factors>");
         displayInListView(tasks_listview, null, "<No tasks>");
         displayInListView(suppliers_listview, null, "<No suppliers>");
