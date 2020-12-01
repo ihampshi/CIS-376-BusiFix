@@ -22,6 +22,10 @@ public class SimData {
     public ArrayList<Factor> factors;
     public ArrayList<Task> tasks;
     
+    //Initial conditions
+    public double balance;
+    public String welcomeMessage;
+    
     //Constructor
     public SimData() {
         
@@ -33,5 +37,9 @@ public class SimData {
         products = new ArrayList();
         factors = new ArrayList();
         tasks = new ArrayList();
+        
+        //Initialize conditions
+        balance = 0.0;
+        welcomeMessage = "";
     }
 }

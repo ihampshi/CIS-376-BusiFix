@@ -37,6 +37,12 @@ public class TeacherFXMLController implements Initializable {
     @FXML
     private TextArea business_description_txtarea;
     
+    @FXML
+    private TextField balance_txtfield;
+    
+    @FXML
+    private TextArea welcome_txtarea;
+    
     //Lists
     @FXML
     private ListView positions_listview;
@@ -140,6 +146,39 @@ public class TeacherFXMLController implements Initializable {
         
         //Update the working simulation data
         BusifixAppData.GetWorkingData().businessDescription = updatedDescription;
+    }
+    
+    //When the user types in the balance amount field
+    public void updateBalance() {
+        
+        //Read the updated balance from the text box
+        String updatedBalance = balance_txtfield.getText();
+        
+        try {
+            
+            //Attempt to parse the input
+            double updatedBalanceDecimal = Double.parseDouble(updatedBalance);
+            
+            //Update the working simulation data
+            BusifixAppData.GetWorkingData().balance = updatedBalanceDecimal;
+        } catch (Exception e) {
+            
+            //Retrieve the current balance
+            String oldBalance = String.valueOf(BusifixAppData.GetWorkingData().balance);
+            
+            //Reset the text to the last valid value
+            balance_txtfield.setText(oldBalance);
+        }
+    }
+    
+    //When the user types in the welcome message text field
+    public void updateWelcomeMessage() {
+        
+        //Read the updated description from the text area
+        String updatedMessage = welcome_txtarea.getText();
+        
+        //Update the working simulation data
+        BusifixAppData.GetWorkingData().welcomeMessage = updatedMessage;
     }
     
     //Displays the contents of the simulation data within the available list views

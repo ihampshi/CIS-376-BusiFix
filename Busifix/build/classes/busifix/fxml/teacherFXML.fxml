@@ -43,7 +43,7 @@
                                              </font>
                                           </TextField>
                                           <Label layoutX="14.0" layoutY="78.0" text="Description" />
-                                          <TextArea fx:id="business_description_txtarea" layoutX="14.0" layoutY="103.0" onKeyTyped="#updateBusinessDescription" prefHeight="83.0" prefWidth="164.0" promptText="Business description">
+                                          <TextArea fx:id="business_description_txtarea" layoutX="14.0" layoutY="103.0" onKeyTyped="#updateBusinessDescription" prefHeight="83.0" prefWidth="164.0" promptText="Business description" wrapText="true">
                                              <font>
                                                 <Font size="11.0" />
                                              </font>
@@ -133,13 +133,13 @@
                                              </font>
                                           </Label>
                                           <Label layoutX="14.0" layoutY="38.0" text="Balance: $" />
-                                          <TextField layoutX="69.0" layoutY="34.0" prefHeight="26.0" prefWidth="108.0" promptText="amount, eg. 100.00" text="100.00">
+                                          <TextField fx:id="balance_txtfield" layoutX="69.0" layoutY="34.0" onKeyTyped="#updateBalance" prefHeight="26.0" prefWidth="108.0" promptText="amount, eg. 100.00" text="0.0">
                                              <font>
                                                 <Font size="11.0" />
                                              </font>
                                           </TextField>
                                           <Label layoutX="14.0" layoutY="78.0" text="Welcome Message" />
-                                          <TextArea layoutX="14.0" layoutY="103.0" prefHeight="83.0" prefWidth="164.0" promptText="Describe the situation">
+                                          <TextArea fx:id="welcome_txtarea" layoutX="14.0" layoutY="103.0" onKeyTyped="#updateWelcomeMessage" prefHeight="83.0" prefWidth="164.0" promptText="Describe the situation" wrapText="true">
                                              <font>
                                                 <Font size="11.0" />
                                              </font>
