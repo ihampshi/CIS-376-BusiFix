@@ -70,6 +70,9 @@ public class StudentFXMLController implements Initializable {
             } catch (Exception e) {
                 
                 e.printStackTrace();
+                
+                //Log successful load
+                logEvent("Simulation file: '" + chosenFile.getAbsolutePath() + "' could not be successfully loaded");
             }
             
             //If load was successful
@@ -77,6 +80,9 @@ public class StudentFXMLController implements Initializable {
                 
                 //Setup data
                 BusifixAppData.SetWorkingData(loadedData);
+                
+                //Log successful load
+                logEvent("Simulation file: '" + chosenFile.getAbsolutePath() + "' successfully loaded");
             }
         }
     }
@@ -97,12 +103,24 @@ public class StudentFXMLController implements Initializable {
         }
     }
     
+    //Logs the given message to the event log
+    public void logEvent(String eventMessage) {
+        
+        //Retrieve the current event text
+        String logText = log_txtarea.getText();
+        
+        //Add the event message to the text
+        log_txtarea.appendText(eventMessage + "\n--\n");
+    }
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        //Log initialization
+        logEvent("Initializing student interface");
     }    
     
 }
