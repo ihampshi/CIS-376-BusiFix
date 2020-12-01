@@ -6,6 +6,7 @@
 package busifix.fxml;
 
 import busifix.BusifixAppData;
+import busifix.BusifixAppProgress;
 import busifix.io.SimLoader;
 import busifix.simdatatypes.SimData;
 import java.io.File;
@@ -14,6 +15,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -49,6 +51,10 @@ public class StudentFXMLController implements Initializable {
     //Event log text area
     @FXML
     private TextArea log_txtarea;
+    
+    //Advance button
+    @FXML
+    private Button advance_btn;
     
     //Loads the chosen data file into the working simulation data
     public void loadSim() {    
@@ -87,6 +93,13 @@ public class StudentFXMLController implements Initializable {
         }
     }
     
+    //Advances the simulation to the next day
+    public void advanceDay() {
+        
+        //Perform updates for the next day
+        BusifixAppProgress.NextDay();
+    }
+    
     //Transitions to the teacher interface
     public void toTeacherMode() {
         
@@ -118,6 +131,9 @@ public class StudentFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        //Initialize simulation progress
+        BusifixAppProgress.InitializeSimProgress();
         
         //Log initialization
         logEvent("Initializing student interface");

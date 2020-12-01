@@ -14,17 +14,38 @@ import busifix.simdatatypes.SimProgress;
 public class BusifixAppProgress {
     
     //The simulation progress information
-    public static SimProgress studentSimProgress;
+    public static SimProgress simProgress;
     
     //Initializes the simulation progress
     public static void InitializeSimProgress() {
         
-        studentSimProgress = new SimProgress();
+        simProgress = new SimProgress();
+    }
+    
+    //Returns whether the simulation progress is initialized
+    public static boolean IsSimProgressInitialized() {
+        
+        return simProgress != null;
     }
     
     //Returns the simulation progress
     public static SimProgress GetSimProgress() {
         
-        return studentSimProgress;
+        return simProgress;
+    }
+    
+    //Update the simulation progress and data for the current day
+    public static void NextDay() {
+        
+        //If initialized
+        if (IsSimProgressInitialized()) {
+        
+            //Increment the day counter
+            simProgress.day += 1;
+            
+        } else {
+            
+            System.out.println("Simulation progress not initialized, but application is attempting to advance to the next day.");
+        }
     }
 }
