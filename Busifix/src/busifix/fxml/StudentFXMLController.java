@@ -123,6 +123,10 @@ public class StudentFXMLController implements Initializable {
         //Update day counter
         int dayCounter = BusifixAppProgress.GetSimProgress().day;
         day_lbl.setText(String.valueOf(dayCounter));
+        
+        //Update financial labels
+        double balance = BusifixAppData.GetWorkingData().balance;
+        balance_lbl.setText("$" + String.valueOf(balance));
     }
     
     //Transitions to the teacher interface
