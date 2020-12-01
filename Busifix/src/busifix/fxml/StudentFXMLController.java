@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -21,6 +22,18 @@ public class StudentFXMLController implements Initializable {
     
     @FXML
     private AnchorPane rootPane;
+    
+    //Financial business overview labels
+    @FXML
+    private Label balance_lbl;
+    @FXML
+    private Label expenses_lbl;
+    @FXML
+    private Label expected_sales_lbl;
+    @FXML
+    private Label net_lbl;
+    @FXML
+    private Label expected_balance_lbl;
     
     //Transitions to the teacher interface
     public void toTeacherMode() {
