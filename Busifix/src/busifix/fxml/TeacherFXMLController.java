@@ -15,11 +15,16 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -30,6 +35,9 @@ public class TeacherFXMLController implements Initializable {
     
     @FXML
     private AnchorPane rootPane;
+    
+    @FXML
+    private Button productBtn;
     
     @FXML
     private TextField business_name_txtfield;
@@ -122,6 +130,26 @@ public class TeacherFXMLController implements Initializable {
             //Load student mode
             pane = FXMLLoader.load(getClass().getResource("studentFXML.fxml"));
             rootPane.getChildren().setAll(pane);
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+        }
+    }
+    
+    //Transitions to the product edit interface
+    public void toEditProduct(ActionEvent event) {
+        Stage stage;
+        Parent root;
+        try {
+            stage = new Stage();
+            //Load product edit mode
+            root = FXMLLoader.load(getClass().getResource("editproductFXML.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            //allows for stage to have a pop up effect
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initOwner(productBtn.getScene().getWindow());
+            stage.showAndWait();
         } catch (Exception e) {
             
             e.printStackTrace();
