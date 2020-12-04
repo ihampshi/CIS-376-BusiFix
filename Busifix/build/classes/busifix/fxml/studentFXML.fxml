@@ -47,20 +47,22 @@
                                                 <Font name="System Bold" size="12.0" />
                                              </font>
                                           </Label>
-                                          <Label layoutX="18.0" layoutY="40.0" text="Balance:" />
-                                          <Label layoutX="236.0" layoutY="17.0" text="Inventory" />
-                                          <ListView fx:id="inventory_listview" layoutX="236.0" layoutY="35.0" prefHeight="150.0" prefWidth="352.0" />
-                                          <Label fx:id="balance_lbl" layoutX="150.0" layoutY="40.0" prefHeight="18.0" prefWidth="61.0" text="\$0.00" />
-                                          <Label layoutX="18.0" layoutY="68.0" text="Expenses:" />
-                                          <Line endX="100.0" layoutX="118.0" layoutY="60.0" startX="-100.0" />
-                                          <Label layoutX="18.0" layoutY="88.0" text="Expected Sales:" />
-                                          <Label fx:id="expenses_lbl" layoutX="150.0" layoutY="67.0" prefHeight="18.0" prefWidth="61.0" text="\$0.00" />
-                                          <Label fx:id="expected_sales_lbl" layoutX="150.0" layoutY="87.0" prefHeight="18.0" prefWidth="61.0" text="\$0.00" />
-                                          <Label layoutX="18.0" layoutY="108.0" text="Net:" />
-                                          <Label fx:id="net_lbl" layoutX="150.0" layoutY="107.0" prefHeight="18.0" prefWidth="61.0" text="\$0.00" />
-                                          <Line endX="100.0" layoutX="118.0" layoutY="130.0" startX="-100.0" />
-                                          <Label layoutX="18.0" layoutY="135.0" text="Exp. balance:" />
-                                          <Label fx:id="expected_balance_lbl" layoutX="150.0" layoutY="135.0" prefHeight="18.0" prefWidth="61.0" text="\$0.00" />
+                                          <Label layoutX="198.0" layoutY="70.0" text="Balance:" />
+                                          <Label layoutX="402.0" layoutY="18.0" text="Inventory" />
+                                          <ListView fx:id="inventory_listview" layoutX="402.0" layoutY="35.0" prefHeight="150.0" prefWidth="186.0" />
+                                          <Label fx:id="balance_lbl" layoutX="330.0" layoutY="70.0" prefHeight="18.0" prefWidth="61.0" text="\$0.00" />
+                                          <Label layoutX="198.0" layoutY="98.0" text="Expenses:" />
+                                          <Line endX="100.0" layoutX="298.0" layoutY="90.0" startX="-100.0" />
+                                          <Label layoutX="198.0" layoutY="118.0" text="Expected Sales:" />
+                                          <Label fx:id="expenses_lbl" layoutX="330.0" layoutY="97.0" prefHeight="18.0" prefWidth="61.0" text="\$0.00" />
+                                          <Label fx:id="expected_sales_lbl" layoutX="330.0" layoutY="117.0" prefHeight="18.0" prefWidth="61.0" text="\$0.00" />
+                                          <Label layoutX="198.0" layoutY="138.0" text="Net:" />
+                                          <Label fx:id="net_lbl" layoutX="330.0" layoutY="137.0" prefHeight="18.0" prefWidth="61.0" text="\$0.00" />
+                                          <Line endX="100.0" layoutX="298.0" layoutY="160.0" startX="-100.0" />
+                                          <Label layoutX="198.0" layoutY="165.0" text="Exp. balance:" />
+                                          <Label fx:id="expected_balance_lbl" layoutX="330.0" layoutY="165.0" prefHeight="18.0" prefWidth="61.0" text="\$0.00" />
+                                          <Label fx:id="business_name" layoutX="18.0" layoutY="36.0" text="&lt;BUSINESS NAME&gt;" />
+                                          <Label fx:id="business_description" alignment="TOP_LEFT" layoutX="18.0" layoutY="62.0" prefHeight="118.0" prefWidth="170.0" text="&lt;BUSINESS DESCRIPTION&gt;" wrapText="true" />
                                        </children>
                                     </AnchorPane>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">

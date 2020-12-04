@@ -100,6 +100,12 @@ public class TeacherFXMLController implements Initializable {
                 
                 //Setup data
                 BusifixAppData.SetWorkingData(loadedData);
+                
+                //Update display
+                displayListContents();
+                
+                //Display text
+                setTextContents();
             }
         }
     }
@@ -250,6 +256,15 @@ public class TeacherFXMLController implements Initializable {
         }
     }
     
+    private void setTextContents() {
+        
+        business_name_txtfield.setText(BusifixAppData.GetWorkingData().businessName);
+        business_description_txtarea.setText(BusifixAppData.GetWorkingData().businessDescription);
+        
+        balance_txtfield.setText(String.valueOf(BusifixAppData.GetWorkingData().balance));
+        welcome_txtarea.setText(BusifixAppData.GetWorkingData().welcomeMessage);
+    }
+    
     /**
      * Initializes the controller class.
      */
@@ -258,6 +273,9 @@ public class TeacherFXMLController implements Initializable {
         
         //Populate list view contents
         displayListContents();
+        
+        //Load text components
+        setTextContents();
     }    
     
 }

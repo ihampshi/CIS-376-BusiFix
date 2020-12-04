@@ -33,6 +33,11 @@ public class StudentFXMLController implements Initializable {
     @FXML
     private AnchorPane rootPane;
     
+    @FXML
+    private Label business_name;
+    @FXML
+    private Label business_description;
+    
     //Financial business overview labels
     @FXML
     private Label balance_lbl;
@@ -109,8 +114,8 @@ public class StudentFXMLController implements Initializable {
                 //Setup data
                 BusifixAppData.SetWorkingData(loadedData);
                 
-                //Update displays
-                displayProgress();
+                //Perform secondary initialization
+                initializeSimulation();
                 
                 //Log successful load
                 logEvent("Simulation file: '" + chosenFile.getAbsolutePath() + "' successfully loaded");
@@ -223,6 +228,33 @@ public class StudentFXMLController implements Initializable {
         
         //Log initialization
         logEvent("Initializing student interface");
+        
+        //Detect existing simulation data
+        if (BusifixAppData.IsWorkingDataInitialized()) {
+            
+            //Perform simulation initialization
+            initializeSimulation();
+        }
     }    
+    
+    private void initializeSimulation() {
+        
+        //Load interface settings
+        business_name.setText(BusifixAppData.GetWorkingData().businessName);
+        business_description.setText(BusifixAppData.GetWorkingData().businessDescription);
+        
+        //Update displays
+        displayProgress();
+        
+        //Display welcome message
+        String message = BusifixAppData.GetWorkingData().welcomeMessage;
+        
+        //If a welcome message is present
+        if (message != "") {
+            
+            //Display welcome message
+            logEvent(message);
+        }
+    }
     
 }

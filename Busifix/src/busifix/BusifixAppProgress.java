@@ -42,6 +42,7 @@ public class BusifixAppProgress {
             
             // --> Perform all required simulation update algorithms here
             
+            
             //Increment the day counter
             simProgress.day += 1;
             
