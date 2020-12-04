@@ -21,10 +21,16 @@ public class SimData {
     public ArrayList<ProductType> products;
     public ArrayList<Factor> factors;
     public ArrayList<Task> tasks;
+    public ArrayList<Inventory> inventories;
+    public ArrayList<Employee> employeePool;
+    public ArrayList<Position> positions;
+    public ArrayList<ProductSupplier> productSuppliers;
+    public ArrayList<RandomEvent> randomEvents;
     
     //Initial conditions
     public double balance;
     public String welcomeMessage;
+    public ArrayList<Employee> hiredEmployees;
     
     //Constructor
     public SimData() {
@@ -37,9 +43,15 @@ public class SimData {
         products = new ArrayList();
         factors = new ArrayList();
         tasks = new ArrayList();
+        inventories = new ArrayList();
+        employeePool = new ArrayList();
+        positions = new ArrayList();
+        productSuppliers = new ArrayList();
+        randomEvents = new ArrayList();
         
         //Initialize conditions
         balance = 0.0;
         welcomeMessage = "";
+        hiredEmployees = new ArrayList();
     }
 }
