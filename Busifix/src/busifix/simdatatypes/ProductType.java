@@ -17,4 +17,14 @@ public class ProductType {
     public double saleMean;
     public double saleDeviation;
     public ArrayList<Factor> meanShiftFactors;
+    
+    //Constructor
+    public ProductType() {
+        
+        name = "";
+        salePrice = 0;
+        saleMean = 0;
+        saleDeviation = 0;
+        meanShiftFactors = new ArrayList();
+    }
 }

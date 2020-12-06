@@ -31,6 +31,7 @@ public class SimData {
     public double balance;
     public String welcomeMessage;
     public ArrayList<Employee> hiredEmployees;
+    public ArrayList<PlacedOrder> placedOrders;
     
     //Constructor
     public SimData() {
@@ -53,5 +54,6 @@ public class SimData {
         balance = 0.0;
         welcomeMessage = "";
         hiredEmployees = new ArrayList();
+        placedOrders = new ArrayList();
     }
 }

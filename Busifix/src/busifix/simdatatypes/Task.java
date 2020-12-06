@@ -13,4 +13,12 @@ public class Task {
     public String name;
     public Effect completionEffect;
     public Effect failureEffect;
+    
+    //Constructor
+    public Task() {
+        
+        name = "";
+        completionEffect = null;
+        failureEffect = null;
+    }
 }

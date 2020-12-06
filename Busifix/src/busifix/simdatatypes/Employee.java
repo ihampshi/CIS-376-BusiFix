@@ -15,5 +15,12 @@ public class Employee {
     public String name;
     
     //The success rate of the employee
-    public float successRate;
+    public double successRate;
+    
+    //Constructor
+    public Employee() {
+        
+        name = "";
+        successRate = 0.5;
+    }
 }

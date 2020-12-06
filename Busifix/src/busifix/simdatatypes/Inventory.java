@@ -16,4 +16,11 @@ public class Inventory {
     
     //The product type that can be contained
     public ProductType productType;
+    
+    //Constructor
+    public Inventory() {
+        
+        size = 0;
+        productType = null;
+    }
 }

@@ -9,7 +9,7 @@ import javafx.fxml.FXML;
 import busifix.BusifixAppData;
 import busifix.io.SimLoader;
 import busifix.io.SimSaver;
-import busifix.simdatatypes.SimData;
+import busifix.simdatatypes.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -69,9 +69,57 @@ public class TeacherFXMLController implements Initializable {
     @FXML
     private ListView employees_listview;
     @FXML
-    private ListView assigned_positions_listview;
+    private ListView hired_listview;
     @FXML
     private ListView placed_orders_listview;
+    
+    //Add/remove buttons
+    @FXML
+    private Button add_position_btn;
+    @FXML
+    private Button remove_position_btn;
+    @FXML
+    private Button add_inventory_btn;
+    @FXML
+    private Button remove_inventory_btn;
+    @FXML
+    private Button add_product_btn;
+    @FXML
+    private Button remove_product_btn;
+    @FXML
+    private Button add_factor_btn;
+    @FXML
+    private Button remove_factor_btn;
+    @FXML
+    private Button add_task_btn;
+    @FXML
+    private Button remove_task_btn;
+    @FXML
+    private Button add_supplier_btn;
+    @FXML
+    private Button remove_supplier_btn;
+    @FXML
+    private Button add_event_btn;
+    @FXML
+    private Button remove_event_btn;
+    @FXML
+    private Button add_employee_btn;
+    @FXML
+    private Button remove_employee_btn;
+    @FXML
+    private Button add_hired_btn;
+    @FXML
+    private Button remove_hired_btn;
+    @FXML
+    private Button add_place_order_btn;
+    @FXML
+    private Button remove_place_order_btn;
+    
+    //Combo boxes
+    @FXML
+    private ComboBox hired_combo;
+    @FXML
+    private ComboBox order_combo;
     
     //Loads the chosen data file into the working simulation data
     public void loadSim() {    
@@ -215,27 +263,197 @@ public class TeacherFXMLController implements Initializable {
         BusifixAppData.GetWorkingData().welcomeMessage = updatedMessage;
     }
     
+    //When an add/remove button is pressed
+    public void addRemoveItem(ActionEvent event) {
+        
+        //Get the source button
+        Button source = (Button)event.getSource();
+        
+        //Positions
+        testAddRemovePair(source, add_position_btn, remove_position_btn, BusifixAppData.GetWorkingData().positions, positions_listview, new Position());
+        
+        //Inventories
+        testAddRemovePair(source, add_inventory_btn, remove_inventory_btn, BusifixAppData.GetWorkingData().inventories, inventories_listview, new Inventory());
+        
+        //Product types
+        testAddRemovePair(source, add_product_btn, remove_product_btn, BusifixAppData.GetWorkingData().products, product_types_listview, new ProductType());
+        
+        //Factors
+        testAddRemovePair(source, add_factor_btn, remove_factor_btn, BusifixAppData.GetWorkingData().factors, factors_listview, new Factor());
+        
+        //Tasks
+        testAddRemovePair(source, add_task_btn, remove_task_btn, BusifixAppData.GetWorkingData().tasks, tasks_listview, new Task());
+        
+        //Product suppliers
+        testAddRemovePair(source, add_supplier_btn, remove_supplier_btn, BusifixAppData.GetWorkingData().productSuppliers, suppliers_listview, new ProductSupplier());
+        
+        //Random events
+        testAddRemovePair(source, add_event_btn, remove_event_btn, BusifixAppData.GetWorkingData().randomEvents, events_listview, new RandomEvent());
+        
+        //Employee pool
+        testAddRemovePair(source, add_employee_btn, remove_employee_btn, BusifixAppData.GetWorkingData().employeePool, employees_listview, new Employee());
+        
+        //Hired employees
+        hireFireEmployee(source);
+
+        //Placed orders
+        placeCancelOrder(source);
+        
+        displayListContents();
+    }
+    
+    //Tests whether the given add/remove button pair were pressed
+    private void testAddRemovePair(Button source, Button addBtn, Button removeBtn, ArrayList list, ListView selector, Object newItem) {
+        
+        //Add button pressed
+        if (source.equals(addBtn)) {
+            
+            list.add(newItem);
+        }
+        
+        //Remove button pressed
+        else if (source.equals(removeBtn)) {
+            
+            int selectedIndex = selector.getSelectionModel().getSelectedIndex();
+            
+            //If entry selected and items exist in list
+            if (selectedIndex > -1 && list.size() > 0) {
+                
+                //Remove selected item
+                list.remove(selectedIndex);
+            }
+        }
+    }
+    
+    //Tests whether the given button adds/removes a hired employee
+    private void hireFireEmployee(Button source) {
+        
+        ArrayList<Employee> employeePool = BusifixAppData.GetWorkingData().employeePool;
+        ArrayList<Employee> hiredEmployees = BusifixAppData.GetWorkingData().hiredEmployees;
+        
+        //Add button pressed
+        if (source.equals(add_hired_btn)) {
+            
+            //Get selected index
+            int selectedIndex = hired_combo.getSelectionModel().getSelectedIndex();
+            
+            //If entry selected and items exist in list
+            if (selectedIndex > -1 && employeePool.size() > 0) {
+                
+                //Get selected employee
+                ArrayList<Employee> unhiredEmployees = BusifixAppData.GetUnhiredEmployees();
+                Employee selectedEmployee = unhiredEmployees.get(selectedIndex);
+                
+                //If employee is not already hired
+                if (!hiredEmployees.contains(selectedEmployee)) {
+                                        
+                    //Hire employee
+                    hiredEmployees.add(selectedEmployee);
+                }
+            }
+        }
+        
+        //Remove button pressed
+        if (source.equals(remove_hired_btn)) {
+            
+            //Get selected index
+            int selectedIndex = hired_listview.getSelectionModel().getSelectedIndex();
+            
+            //If entry selected and items exist in list
+            if (selectedIndex > -1 && hiredEmployees.size() > 0) {
+                
+                //Get selected employee
+                Employee selectedEmployee = hiredEmployees.get(selectedIndex);
+                
+                //Remove employee
+                hiredEmployees.remove(selectedEmployee);
+            }
+        }
+    }
+    
+    //Tests whether the given button places/cancels an order
+    private void placeCancelOrder(Button source) {
+        
+        //Add button pressed
+        if (source.equals(add_place_order_btn)) {
+            
+            ArrayList<Order> ordersAvailable = BusifixAppData.GetOrdersAvailable();
+            
+            //Get selected index
+            int selectedIndex = order_combo.getSelectionModel().getSelectedIndex();
+            
+            //If entry selected and items exist in list
+            if (selectedIndex > -1 && ordersAvailable.size() > 0) {
+                
+                //Get selected order
+                Order selectedOrder = ordersAvailable.get(selectedIndex);
+                
+                //Place order
+                PlacedOrder newPlacedOrder = new PlacedOrder(selectedOrder);
+                BusifixAppData.GetWorkingData().placedOrders.add(newPlacedOrder);
+            }
+        }
+        
+        //Remove button pressed
+        if (source.equals(remove_place_order_btn)) {
+            
+            ArrayList<PlacedOrder> placedOrders = BusifixAppData.GetWorkingData().placedOrders;
+            
+            //Get selected index
+            int selectedIndex = placed_orders_listview.getSelectionModel().getSelectedIndex();
+            
+            //If entry selected and items exist in list
+            if (selectedIndex > -1 && placedOrders.size() > 0) {
+                
+                //Get selected order
+                PlacedOrder selectedOrder = placedOrders.get(selectedIndex);
+                
+                //Remove employee
+                placedOrders.remove(selectedOrder);
+            }
+        }
+    }
+    
+    
     //Displays the contents of the simulation data within the available list views
     private void displayListContents() {
         
         //Retrieve working data as displayable arrays
+        ArrayList<String> positionNames = BusifixAppData.GetPositionNames();
+        ArrayList<String> inventoryNames = BusifixAppData.GetInventoryNames();
         ArrayList<String> productNames = BusifixAppData.GetProductTypeNames();
+        ArrayList<String> factorNames = BusifixAppData.GetFactorNames();
+        ArrayList<String> taskNames = BusifixAppData.GetTaskNames();
+        ArrayList<String> supplierNames = BusifixAppData.GetSupplierNames();
+        ArrayList<String> eventNames = BusifixAppData.GetEventNames();
+        ArrayList<String> employeeNames = BusifixAppData.GetEmployeePoolNames();
+        ArrayList<String> hireNames = BusifixAppData.GetHiredEmployeeNames();
+        ArrayList<String> placedOrderNames = BusifixAppData.GetPlacedOrderNames();
+        
+        ArrayList<String> unhiredNames = BusifixAppData.GetUnhiredEmployeeNames();
+        ArrayList<String> orderNames = BusifixAppData.GetOrderNames();
         
         //Display working data
-        displayInListView(positions_listview, null, "<No positions>");
-        displayInListView(inventories_listview, null, "<No inventories>");
+        displayInListView(positions_listview, positionNames, "<No positions>");
+        displayInListView(inventories_listview, inventoryNames, "<No inventories>");
         displayInListView(product_types_listview, productNames, "<No product types>");
-        displayInListView(factors_listview, null, "<No factors>");
-        displayInListView(tasks_listview, null, "<No tasks>");
-        displayInListView(suppliers_listview, null, "<No suppliers>");
-        displayInListView(events_listview, null, "<No events>");
-        displayInListView(employees_listview, null, "<No employees>");
-        displayInListView(assigned_positions_listview, null, "<No assigned positions>");
-        displayInListView(placed_orders_listview, null, "<No placed orders>");
+        displayInListView(factors_listview, factorNames, "<No factors>");
+        displayInListView(tasks_listview, taskNames, "<No tasks>");
+        displayInListView(suppliers_listview, supplierNames, "<No suppliers>");
+        displayInListView(events_listview, eventNames, "<No events>");
+        displayInListView(employees_listview, employeeNames, "<No employees>");
+        displayInListView(hired_listview, hireNames, "<No hired employees>");
+        displayInListView(placed_orders_listview, placedOrderNames, "<No placed orders>");
+        
+        //Display hireable employees
+        displayInComboBox(hired_combo, unhiredNames, "<No hireable employees>");
+        
+        //Display placeable orders
+        displayInComboBox(order_combo, orderNames, "<No placeable orders>");
     }
     
     //Displays the contents of the given list in the given list view
-    //Displays empty message if the givne list is empty
+    //Displays empty message if the given list is empty
     private void displayInListView(ListView listView, ArrayList<String> items, String emptyMessage) {
         
         //Clear existing items
@@ -255,6 +473,29 @@ public class TeacherFXMLController implements Initializable {
             }
         }
     }
+    
+    //Displays the contents of the given list in the given combo box
+    //Displays empty message if the given list is empty
+    private void displayInComboBox(ComboBox comboBox, ArrayList<String> items, String emptyMessage) {
+        
+        //Clear existing items
+        comboBox.getItems().clear();
+        
+        //If the given list is invalid or empty
+        if (items == null || items.size() == 0) {
+            
+            //Display empty message
+            comboBox.getItems().add(emptyMessage);
+        } else {
+            
+            //Display the given items
+            for (int index = 0; index < items.size(); index++) {
+                
+                comboBox.getItems().add(items.get(index));
+            }
+        }
+    }
+    
     
     private void setTextContents() {
         

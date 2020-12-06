@@ -23,4 +23,13 @@ public class RandomEvent {
     //The effect to have when the event occurs
     public Effect effect;
     
+    //Constructor
+    public RandomEvent() {
+        
+        name = "";
+        probability = 0;
+        message = "";
+        effect = null;
+    }
+    
 }

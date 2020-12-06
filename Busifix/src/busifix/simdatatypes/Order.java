@@ -14,9 +14,22 @@ public class Order {
     //The product type to be delivered
     public ProductType productType;
     
+    //The cost of placing the order
+    public double cost;
+    
     //The number of units in the delivery
     public int quantity;
     
     //The number of days before the order arrives after placing the order
     public int distance;
+    
+    //Constructor
+    public Order() {
+        
+        productType = null;
+        cost = 0;
+        quantity = 0;
+        distance = 0;
+        
+    }
 }

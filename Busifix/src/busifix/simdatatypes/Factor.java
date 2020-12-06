@@ -16,4 +16,13 @@ public class Factor {
     public FactorMode mode;
     public double baseValue;
     public ArrayList<Factor> sourceFactors; 
+    
+    //Constructor
+    public Factor() {
+        
+        name = "";
+        mode = FactorMode.VALUE;
+        baseValue = 0.0;
+        sourceFactors = new ArrayList();
+    }
 }

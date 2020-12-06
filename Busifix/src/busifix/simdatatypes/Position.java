@@ -18,4 +18,10 @@ public class Position {
     
     //The tasks owned (automatically performed) by employees in this position
     public ArrayList<Task> tasks;
+    
+    public Position() {
+        
+        name = "";
+        tasks = new ArrayList();
+    }
 }

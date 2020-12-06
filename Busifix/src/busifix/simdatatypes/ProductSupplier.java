@@ -17,4 +17,12 @@ public class ProductSupplier {
     
     //The orders offered by this supplier
     public ArrayList<Order> ordersOffered;
+    
+    //Constructor
+    public ProductSupplier() {
+        
+        name = "";
+        ordersOffered = new ArrayList();
+        ordersOffered.add(new Order());
+    }
 }
