@@ -65,6 +65,10 @@
                                                 <Label layoutX="14.0" layoutY="164.0" text="Inventories" />
                                                 <ListView fx:id="inventories_listview" layoutX="14.0" layoutY="187.0" prefHeight="112.0" prefWidth="342.0" />
                                                 <Button layoutX="319.0" layoutY="160.0" mnemonicParsing="false" text="Edit" />
+                                                <Button fx:id="add_position_btn" layoutX="259.0" layoutY="10.0" minWidth="25.0" mnemonicParsing="false" text="+" />
+                                                <Button fx:id="remove_position_btn" layoutX="289.0" layoutY="10.0" minWidth="25.0" mnemonicParsing="false" text="-" />
+                                                <Button fx:id="add_inventory_btn" layoutX="259.0" layoutY="160.0" minWidth="25.0" mnemonicParsing="false" text="+" />
+                                                <Button fx:id="remove_inventory_btn" layoutX="289.0" layoutY="160.0" minWidth="25.0" mnemonicParsing="false" text="-" />
                                              </children>
                                           </Pane>
                                        </children>
@@ -111,6 +115,18 @@
                                           <Label layoutX="18.0" layoutY="823.0" text="Employee Pool" />
                                           <ListView fx:id="employees_listview" layoutX="18.0" layoutY="846.0" prefHeight="112.0" prefWidth="550.0" />
                                           <Button layoutX="531.0" layoutY="819.0" mnemonicParsing="false" text="Edit" />
+                                          <Button fx:id="add_product_btn" layoutX="472.0" layoutY="36.0" minWidth="25.0" mnemonicParsing="false" text="+" />
+                                          <Button fx:id="remove_product_btn" layoutX="502.0" layoutY="36.0" minWidth="25.0" mnemonicParsing="false" text="-" />
+                                          <Button fx:id="add_factor_btn" layoutX="472.0" layoutY="186.0" minWidth="25.0" mnemonicParsing="false" text="+" />
+                                          <Button fx:id="remove_factor_btn" layoutX="502.0" layoutY="186.0" minWidth="25.0" mnemonicParsing="false" text="-" />
+                                          <Button fx:id="remove_task_btn" layoutX="501.0" layoutY="336.0" minWidth="25.0" mnemonicParsing="false" text="-" />
+                                          <Button fx:id="remove_supplier_btn" layoutX="501.0" layoutY="516.0" minWidth="25.0" mnemonicParsing="false" text="-" />
+                                          <Button fx:id="add_task_btn" layoutX="472.0" layoutY="336.0" minWidth="25.0" mnemonicParsing="false" text="+" />
+                                          <Button fx:id="add_supplier_btn" layoutX="472.0" layoutY="516.0" minWidth="25.0" mnemonicParsing="false" text="+" />
+                                          <Button fx:id="add_event_btn" layoutX="472.0" layoutY="666.0" minWidth="25.0" mnemonicParsing="false" text="+" />
+                                          <Button fx:id="remove_event_btn" layoutX="501.0" layoutY="666.0" minWidth="25.0" mnemonicParsing="false" text="-" />
+                                          <Button fx:id="add_employee_btn" layoutX="472.0" layoutY="819.0" minWidth="25.0" mnemonicParsing="false" text="+" />
+                                          <Button fx:id="remove_employee_btn" layoutX="501.0" layoutY="819.0" minWidth="25.0" mnemonicParsing="false" text="-" />
                                        </children>
                                     </AnchorPane>
                                 </content>
@@ -159,6 +175,10 @@
                                           <Label layoutX="28.0" layoutY="190.0" text="Placed Orders" />
                                           <ListView fx:id="placed_orders_listview" layoutX="28.0" layoutY="213.0" prefHeight="112.0" prefWidth="342.0" />
                                           <Button layoutX="333.0" layoutY="186.0" mnemonicParsing="false" text="Edit" />
+                                          <Button fx:id="add_assign_position_btn" layoutX="276.0" layoutY="36.0" minWidth="25.0" mnemonicParsing="false" text="+" />
+                                          <Button fx:id="remove_assign_position_btn" layoutX="304.0" layoutY="36.0" minWidth="25.0" mnemonicParsing="false" text="-" />
+                                          <Button fx:id="add_place_order_btn" layoutX="276.0" layoutY="186.0" minWidth="25.0" mnemonicParsing="false" text="+" />
+                                          <Button fx:id="remove_place_order_btn" layoutX="304.0" layoutY="186.0" minWidth="25.0" mnemonicParsing="false" text="-" />
                                        </children>
                                     </AnchorPane>
                                  </items>
