@@ -199,7 +199,7 @@ public class TeacherFXMLController implements Initializable {
             //Load product edit mode
             root = FXMLLoader.load(getClass().getResource("editproductFXML.fxml"));
             Scene scene = new Scene(root);
-            stage.setScene(scene);
+            stage.setScene(scene);            
             //allows for stage to have a pop up effect
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(productBtn.getScene().getWindow());
@@ -454,7 +454,7 @@ public class TeacherFXMLController implements Initializable {
     
     //Displays the contents of the given list in the given list view
     //Displays empty message if the given list is empty
-    private void displayInListView(ListView listView, ArrayList<String> items, String emptyMessage) {
+    public void displayInListView(ListView listView, ArrayList<String> items, String emptyMessage) {
         
         //Clear existing items
         listView.getItems().clear();
@@ -504,7 +504,7 @@ public class TeacherFXMLController implements Initializable {
         
         balance_txtfield.setText(String.valueOf(BusifixAppData.GetWorkingData().balance));
         welcome_txtarea.setText(BusifixAppData.GetWorkingData().welcomeMessage);
-    }
+    }  
     
     /**
      * Initializes the controller class.
