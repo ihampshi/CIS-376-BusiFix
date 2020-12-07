@@ -99,8 +99,8 @@
                               <Label layoutX="231.0" layoutY="109.0" prefHeight="18.0" prefWidth="61.0" text="\$0.00" />
                               <Label layoutX="146.0" layoutY="128.0" text="Firing Cost:" />
                               <Label layoutX="231.0" layoutY="128.0" prefHeight="18.0" prefWidth="61.0" text="\$0.00" />
-                              <Button layoutX="257.0" layoutY="313.0" mnemonicParsing="false" text="Fire" />
-                              <Button layoutX="547.0" layoutY="313.0" mnemonicParsing="false" text="Hire" />
+                              <Button fx:id="fire_btn" layoutX="257.0" layoutY="313.0" mnemonicParsing="false" onAction="#fireEmployee" text="Fire" />
+                              <Button fx:id="hire_btn" layoutX="547.0" layoutY="313.0" mnemonicParsing="false" onAction="#hireEmployee" text="Hire" />
                            </children>
                         </AnchorPane>
                   </content>

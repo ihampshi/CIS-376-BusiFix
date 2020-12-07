@@ -8,11 +8,13 @@ package busifix.fxml;
 import busifix.BusifixAppData;
 import busifix.BusifixAppProgress;
 import busifix.io.SimLoader;
+import busifix.simdatatypes.Employee;
 import busifix.simdatatypes.SimData;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -58,9 +60,13 @@ public class StudentFXMLController implements Initializable {
     @FXML
     private TextArea log_txtarea;
     
-    //Advance button
+    //Action buttonn
     @FXML
     private Button advance_btn;
+    @FXML
+    private Button fire_btn;
+    @FXML
+    private Button hire_btn;
     
     //Day counter label
     @FXML
@@ -119,6 +125,48 @@ public class StudentFXMLController implements Initializable {
                 
                 //Log successful load
                 logEvent("Simulation file: '" + chosenFile.getAbsolutePath() + "' successfully loaded");
+            }
+        }
+    }
+    
+    //Fires the selected employee
+    public void fireEmployee(ActionEvent event) {
+        
+        //Get the source button
+        Button source = (Button)event.getSource();
+        
+        if (source.equals(fire_btn)) {
+            
+            ArrayList<Employee> hiredEmployees = BusifixAppProgress.GetSimProgress().hiredEmployees;
+            
+            int selectedIndex = employees_listview.getSelectionModel().getSelectedIndex();
+            
+            if (selectedIndex > -1 && hiredEmployees.size() > 0) {
+                
+                hiredEmployees.remove(selectedIndex);
+                displayProgress();
+            }
+        }
+    }
+    
+    //Hires the selected employee
+    public void hireEmployee(ActionEvent event) {
+        
+        //Get the source button
+        Button source = (Button)event.getSource();
+        
+        if (source.equals(hire_btn)) {
+            
+            ArrayList<Employee> candidates = BusifixAppProgress.GetUnhiredEmployees();
+            
+            int selectedIndex = employee_pool_listview.getSelectionModel().getSelectedIndex();
+            
+            if (selectedIndex > -1 && candidates.size() > 0) {
+                
+                Employee selectedEmployee = candidates.get(selectedIndex);
+                BusifixAppProgress.GetSimProgress().hiredEmployees.add(selectedEmployee);
+                
+                displayProgress();
             }
         }
     }
