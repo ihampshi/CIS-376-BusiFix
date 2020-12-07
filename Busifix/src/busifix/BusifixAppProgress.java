@@ -5,6 +5,8 @@
  */
 package busifix;
 
+import static busifix.BusifixAppData.workingSimData;
+import busifix.simdatatypes.Employee;
 import busifix.simdatatypes.ProductType;
 import busifix.simdatatypes.SimProgress;
 import busifix.simdatatypes.activetypes.ActiveInventory;
@@ -84,5 +86,101 @@ public class BusifixAppProgress {
         }
         
         return inventoryNames;
+    }
+    
+    //Retrieves the names of the available employees
+    public static ArrayList<String> GetEmployeePoolNames() {
+        
+        ArrayList<String> employeeNames = new ArrayList<String>();
+        
+        if (simProgress != null) {
+            
+            ArrayList<Employee> employees = simProgress.employeePool;
+            
+            for (int index = 0; index < employees.size(); index++) {
+                
+                String name = employees.get(index).name;
+                
+                if (name.length() == 0) {
+                
+                    employeeNames.add("<Unnamed Employee>");
+                } else {
+                    
+                    employeeNames.add(name);
+                }
+            }
+        }
+        
+        return employeeNames;
+    }
+    
+    //Retrieves the names of the hired employees
+    public static ArrayList<String> GetHiredEmployeeNames() {
+        
+        ArrayList<String> employeeNames = new ArrayList<String>();
+        
+        if (simProgress != null) {
+            
+            ArrayList<Employee> employees = simProgress.hiredEmployees;
+            
+            for (int index = 0; index < employees.size(); index++) {
+                
+                String name = employees.get(index).name;
+                
+                if (name.length() == 0) {
+                
+                    employeeNames.add("<Unnamed Employee>");
+                } else {
+                    
+                    employeeNames.add(name);
+                }
+            }
+        }
+        
+        return employeeNames;
+    }
+    
+    //Retrieves the employees that aren't hired
+    public static ArrayList<Employee> GetUnhiredEmployees() {
+        
+        ArrayList<Employee> employees = simProgress.employeePool;
+        ArrayList<Employee> hiredEmployees = simProgress.hiredEmployees;
+        ArrayList<Employee> unhiredEmployees = new ArrayList();
+
+        for (int index = 0; index < employees.size(); index++) {
+
+            if (!hiredEmployees.contains(employees.get(index))) {
+
+                unhiredEmployees.add(employees.get(index));
+            }
+        }
+        
+        return unhiredEmployees;
+    }
+    
+    //Retrieves the names of the employees that aren't hired
+    public static ArrayList<String> GetUnhiredEmployeeNames() {
+        
+        ArrayList<String> employeeNames = new ArrayList<String>();
+        
+        if (simProgress != null) {
+            
+            ArrayList<Employee> unhiredEmployees = GetUnhiredEmployees();
+            
+            for (int index = 0; index < unhiredEmployees.size(); index++) {
+                
+                String name = unhiredEmployees.get(index).name;
+                
+                if (name.length() == 0) {
+                
+                    employeeNames.add("<Unnamed Employee>");
+                } else {
+                    
+                    employeeNames.add(name);
+                }
+            }
+        }
+        
+        return employeeNames;
     }
 }

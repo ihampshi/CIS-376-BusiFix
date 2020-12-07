@@ -159,13 +159,15 @@ public class StudentFXMLController implements Initializable {
         
         //Retrieve progress data
         ArrayList<String> inventoryNames = BusifixAppProgress.GetInventoryNames();
+        ArrayList<String> candidateNames = BusifixAppProgress.GetUnhiredEmployeeNames();
+        ArrayList<String> hiredEmployeeNames = BusifixAppProgress.GetHiredEmployeeNames();
         
         //Update inventories listview
         displayInListView(inventory_listview, inventoryNames, "<No inventories>");
         
         //Update employee listviews
-        displayInListView(employees_listview, null, "<No employees>");
-        displayInListView(employee_pool_listview, null, "<No candidates>");
+        displayInListView(employees_listview, hiredEmployeeNames, "<No employees>");
+        displayInListView(employee_pool_listview, candidateNames, "<No candidates>");
         
         //Update order listviews
         displayInListView(placed_orders_listview, null, "<No orders placed>");
