@@ -157,8 +157,11 @@ public class StudentFXMLController implements Initializable {
         double balance = BusifixAppData.GetWorkingData().balance;
         balance_lbl.setText("$" + String.valueOf(balance));
         
+        //Retrieve progress data
+        ArrayList<String> inventoryNames = BusifixAppProgress.GetInventoryNames();
+        
         //Update inventories listview
-        displayInListView(inventory_listview, null, "<No inventories>");
+        displayInListView(inventory_listview, inventoryNames, "<No inventories>");
         
         //Update employee listviews
         displayInListView(employees_listview, null, "<No employees>");

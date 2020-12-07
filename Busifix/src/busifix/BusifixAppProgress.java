@@ -5,7 +5,10 @@
  */
 package busifix;
 
+import busifix.simdatatypes.ProductType;
 import busifix.simdatatypes.SimProgress;
+import busifix.simdatatypes.activetypes.ActiveInventory;
+import java.util.ArrayList;
 
 /**
  *
@@ -50,5 +53,36 @@ public class BusifixAppProgress {
             
             System.out.println("Simulation progress not initialized, but application is attempting to advance to the next day.");
         }
+    }
+    
+    //Retrieves the names of the current inventory data
+    public static ArrayList<String> GetInventoryNames() {
+        
+        ArrayList<String> inventoryNames = new ArrayList<String>();
+        
+        if (simProgress != null) {
+            
+            ArrayList<ActiveInventory> inventories = simProgress.inventories;
+            
+            for (int index = 0; index < inventories.size(); index++) {
+                
+                ActiveInventory current = inventories.get(index);
+                
+                if (current.source != null && current.source.productType != null) {
+                
+                    ProductType productType = current.source.productType;
+                    String name = productType.name;
+                    String size = String.valueOf(current.source.size);
+                    String amount = String.valueOf(current.amount);
+                    
+                    inventoryNames.add("Type: " + name + ", " + amount + "/" + size);
+                } else {
+                    
+                    inventoryNames.add("<Invalid inventory>");
+                }
+            }
+        }
+        
+        return inventoryNames;
     }
 }
