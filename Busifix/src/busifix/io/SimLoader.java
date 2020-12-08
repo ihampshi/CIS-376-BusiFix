@@ -123,7 +123,7 @@ public class SimLoader {
 
             //Copy information to product type
             ProductType product = new ProductType();
-            simData.products.add(product);
+            
             product.name = loadable.name;
             product.salePrice = loadable.salePrice;
             product.saleMean = loadable.saleMean;
@@ -135,6 +135,8 @@ public class SimLoader {
 
             size++;
         }
+        
+        System.out.println(simData.products.size());
     }
     
     private void loadFactors(Scanner s) {
