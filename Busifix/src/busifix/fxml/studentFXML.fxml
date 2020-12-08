@@ -144,8 +144,8 @@
                               <ListView fx:id="placed_orders_listview" layoutX="19.0" layoutY="107.0" prefHeight="200.0" prefWidth="260.0" />
                               <Label layoutX="19.0" layoutY="86.0" text="Placed Orders" />
                               <ListView fx:id="available_orders_listview" layoutX="322.0" layoutY="107.0" prefHeight="200.0" prefWidth="260.0" />
-                              <Button fx:id="cancel_order_btn" layoutX="227.0" layoutY="311.0" mnemonicParsing="false" text="Cancel" />
-                              <Button fx:id="place_order_btn" layoutX="538.0" layoutY="311.0" mnemonicParsing="false" text="Place" />
+                              <Button fx:id="cancel_order_btn" layoutX="227.0" layoutY="311.0" mnemonicParsing="false" onAction="#cancelOrder" text="Cancel" />
+                              <Button fx:id="place_order_btn" layoutX="538.0" layoutY="311.0" mnemonicParsing="false" onAction="#placeOrder" text="Place" />
                               <Label layoutX="322.0" layoutY="86.0" text="Available Orders" />
                               <Label layoutX="19.0" layoutY="41.0" text="Refund Ratio:" />
                               <Label layoutX="109.0" layoutY="41.0" text="0.0" />

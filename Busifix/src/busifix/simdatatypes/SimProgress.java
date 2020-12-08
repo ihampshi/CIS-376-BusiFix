@@ -25,6 +25,9 @@ public class SimProgress {
     public ArrayList<Employee> employeePool;
     public ArrayList<Employee> hiredEmployees;
     
+    //Placed orders
+    public ArrayList<PlacedOrder> placedOrders;
+    
     //Initialize the simulation progress
     public SimProgress() {
         
@@ -35,6 +38,7 @@ public class SimProgress {
         inventories = new ArrayList();
         employeePool = new ArrayList();
         hiredEmployees = new ArrayList();
+        placedOrders = new ArrayList();
         
         //If simulation data exists
         if (BusifixAppData.IsWorkingDataInitialized()) {
@@ -42,6 +46,7 @@ public class SimProgress {
             //Load from simulation data
             initializeInventories();
             initializeEmployees();
+            initializeOrders();
         }
     }
     
@@ -71,6 +76,18 @@ public class SimProgress {
         for (int index = 0; index < sourceHiredEmployees.size(); index++) {
             
             hiredEmployees.add(sourceHiredEmployees.get(index));
+        }
+    }
+    
+    private void initializeOrders() {
+        
+        ArrayList<PlacedOrder> sourceStartingOrders = BusifixAppData.GetWorkingData().placedOrders;
+        
+        System.out.println(BusifixAppData.GetWorkingData().placedOrders.size());
+        
+        for (int index = 0; index < sourceStartingOrders.size(); index++) {
+            
+            placedOrders.add(sourceStartingOrders.get(index));
         }
     }
 }

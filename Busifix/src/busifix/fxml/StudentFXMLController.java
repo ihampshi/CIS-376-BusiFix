@@ -9,6 +9,8 @@ import busifix.BusifixAppData;
 import busifix.BusifixAppProgress;
 import busifix.io.SimLoader;
 import busifix.simdatatypes.Employee;
+import busifix.simdatatypes.Order;
+import busifix.simdatatypes.PlacedOrder;
 import busifix.simdatatypes.SimData;
 import java.io.File;
 import java.net.URL;
@@ -67,6 +69,10 @@ public class StudentFXMLController implements Initializable {
     private Button fire_btn;
     @FXML
     private Button hire_btn;
+    @FXML
+    private Button cancel_order_btn;
+    @FXML
+    private Button place_order_btn;
     
     //Day counter label
     @FXML
@@ -171,6 +177,57 @@ public class StudentFXMLController implements Initializable {
         }
     }
     
+    //Cancels the selected order
+    public void cancelOrder(ActionEvent event) {
+        
+        //Get the source button
+        Button source = (Button)event.getSource();
+        
+        System.out.println("Test");
+        
+        if (source.equals(cancel_order_btn)) {
+            
+            System.out.println("Test2");
+            
+            ArrayList<PlacedOrder> placedOrders = BusifixAppProgress.GetSimProgress().placedOrders;
+            
+            System.out.println("Orders placed: " + String.valueOf(placedOrders.size()));
+            
+            int selectedIndex = placed_orders_listview.getSelectionModel().getSelectedIndex();
+            
+            if (selectedIndex > -1 && placedOrders.size() > 0) {
+                
+                System.out.println("Test3");
+                
+                placedOrders.remove(selectedIndex);
+                displayProgress();
+            }
+        }
+    }
+    
+    //Places the selected order
+    public void placeOrder(ActionEvent event) {
+        
+        //Get the source button
+        Button source = (Button)event.getSource();
+        
+        if (source.equals(place_order_btn)) {
+            
+            ArrayList<Order> availableOrders = BusifixAppData.GetOrdersAvailable();
+            
+            int selectedIndex = available_orders_listview.getSelectionModel().getSelectedIndex();
+            
+            if (selectedIndex > -1 && availableOrders.size() > 0) {
+                
+                Order selectedOrder = availableOrders.get(selectedIndex);
+                PlacedOrder newOrder = new PlacedOrder(selectedOrder);
+                BusifixAppProgress.GetSimProgress().placedOrders.add(newOrder);
+                
+                displayProgress();
+            }
+        }
+    }
+    
     //Advances the simulation to the next day
     public void advanceDay() {
         
@@ -209,6 +266,8 @@ public class StudentFXMLController implements Initializable {
         ArrayList<String> inventoryNames = BusifixAppProgress.GetInventoryNames();
         ArrayList<String> candidateNames = BusifixAppProgress.GetUnhiredEmployeeNames();
         ArrayList<String> hiredEmployeeNames = BusifixAppProgress.GetHiredEmployeeNames();
+        ArrayList<String> placedOrderNames = BusifixAppProgress.GetPlacedOrderNames();
+        ArrayList<String> availableOrderNames = BusifixAppData.GetOrderNames();
         
         //Update inventories listview
         displayInListView(inventory_listview, inventoryNames, "<No inventories>");
@@ -218,8 +277,8 @@ public class StudentFXMLController implements Initializable {
         displayInListView(employee_pool_listview, candidateNames, "<No candidates>");
         
         //Update order listviews
-        displayInListView(placed_orders_listview, null, "<No orders placed>");
-        displayInListView(available_orders_listview, null, "<No orders available>");
+        displayInListView(placed_orders_listview, placedOrderNames, "<No orders placed>");
+        displayInListView(available_orders_listview, availableOrderNames, "<No orders available>");
     }
     
     //Displays the contents of the given list in the given list view

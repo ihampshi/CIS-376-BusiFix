@@ -7,6 +7,8 @@ package busifix;
 
 import static busifix.BusifixAppData.workingSimData;
 import busifix.simdatatypes.Employee;
+import busifix.simdatatypes.Order;
+import busifix.simdatatypes.PlacedOrder;
 import busifix.simdatatypes.ProductType;
 import busifix.simdatatypes.SimProgress;
 import busifix.simdatatypes.activetypes.ActiveInventory;
@@ -182,5 +184,49 @@ public class BusifixAppProgress {
         }
         
         return employeeNames;
+    }
+    
+    
+    public static ArrayList<String> GetPlacedOrderNames() {
+        
+        ArrayList<String> orderNames = new ArrayList<String>();
+        
+        if (simProgress != null) {
+            
+            ArrayList<PlacedOrder> orders = simProgress.placedOrders;
+            
+            for (int index = 0; index < orders.size(); index++) {
+                
+                ProductType productType = orders.get(index).source.productType;
+                double cost = orders.get(index).source.cost;
+                int size = orders.get(index).source.quantity;
+                int distance = orders.get(index).daysRemaining;
+                
+                String message = "$" + cost;
+                message += ", Product: ";
+                
+                if (productType != null) {
+                    
+                    if (productType.name.length() > 0) {
+                    
+                        message += productType.name;
+                    } else {
+                        
+                        message += "<Unnamed Product Type>";
+                    }
+                    
+                } else {
+                    
+                    message += "<unassigned>";
+                }
+                
+                message += ", Amount: " + size;
+                message += ", Wait: " + distance + " days left";
+                
+                orderNames.add(message);
+            }
+        }
+        
+        return orderNames;
     }
 }
