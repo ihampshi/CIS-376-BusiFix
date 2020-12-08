@@ -1,3 +1,9 @@
 Begin ProductType:
+Fender price|450|490|40|0
+Window|120|150|30|1
 Begin Factor:
+Finance|PRODUCT|10
+Technological|DIFF|12
+legal|VALUE|15
 Begin Task:
+Hiring|6|Completed|8|SUM|9|failure|7|AVERAGE
